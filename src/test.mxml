@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+<mx:Script>
+	<![CDATA[
+		import mx.controls.Alert;
+		private function callMsg(str:String):void{
+			mx.controls.Alert.show(str);		
+		}
+	]]>
+</mx:Script>
+
+	
+	<mx:Panel x="17" y="10" width="1102" height="771" layout="vertical" label="커서 버튼" title="Button / LinkButton">
+		<mx:Button label="버튼" click="callMsg('일반버튼')" width="150"/>
+		<mx:Button label="토글버튼" toggle="true" click="callMsg('토글버튼')" width="150"/>
+		<mx:Button label="커서버튼" click="callMsg('커서버튼')" width="150" toolTip="buttonMode=\'true\' useHandCursor=\'true\'" buttonMode="true" useHandCursor="true"/>
+		<mx:LinkButton label="링크 버튼" width="150" click="navigateToURL(new URLRequest('http://okgosu.net'), 'quote')"/>
+		
+		<mx:VBox>
+			<mx:CheckBox label="왼쪽 라벨 체크박스" width="130" id="myChk1" labelPlacement="left" click="myBtn.enabled=myChk1.selected"/>
+			<mx:CheckBox label="오른쪽 라벨 체크박스" width="130" id="myChk2" labelPlacement="right" click="myBtn.enabled=myChk2.selected"/>
+			<mx:Button label="상태확인용버튼" id="myBtn"/>
+		</mx:VBox>
+		
+		<mx:HBox borderStyle="solid" verticalAlign="middle">
+			<mx:Label text="과일 고르기"/>
+			<mx:RadioButtonGroup id="rg1"/>
+			<mx:RadioButton label="1.포도" groupName="rg1" selected="true"/>
+			<mx:RadioButton label="2.메론 " groupName="rg1"/>
+			<mx:RadioButton label="3.수박" groupName="rg1"/>
+		</mx:HBox>
+		<mx:HBox borderStyle="solid" backgroundColor="#EEFF88" verticalAlign="middle">
+			<mx:Label text="음식 고르기" />
+			<mx:RadioButtonGroup id="rg2"/>
+			<mx:RadioButton label="1.쥬스" groupName="rg2" />
+			<mx:RadioButton label="2.커피" groupName="rg2" selected="true" />
+			<mx:RadioButton label="3.콜라" groupName="rg2" />
+		</mx:HBox>
+
+		
+	</mx:Panel>
+</mx:Application>

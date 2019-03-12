@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	backgroundGradientColors="[#f7f794, #adb2ce]" fontSize="11">
+	<mx:Panel
+		paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" horizontalAlign="left">
+		<mx:HBox>
+			<mx:ProgressBar width="200" source="s1" />
+			<mx:Button label="이미지 로드" click="s1.load('D:\1.jpg')" />
+			<mx:Button label="SWF 로드" click="s1.load('D:\java\flexWorkspace\ucems\src\swf\loading.swf')" />
+		</mx:HBox>
+		<mx:Spacer height="10" />
+		<mx:SWFLoader id="s1" autoLoad="false" visible="true" />
+	</mx:Panel>
+</mx:Application>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
+ 
+ <mx:Script>
+  <![CDATA[
+   import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+   import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+   import mx.controls.AdvancedDataGrid;
+   import itemRenderer.DataGridRenderer;
+   
+   import mx.collections.ArrayCollection;
+   
+   private var dataArr:ArrayCollection = new ArrayCollection([
+          {no:"1", title:"title1", imagePath:"http://pds12.egloos.com/pds/200904/20/99/access.png"},
+          {no:"2", title:"title2", imagePath:""},
+          {no:"3", title:"title3", imagePath:"http://pds11.egloos.com/pds/200904/20/99/cache.png"},
+          {no:"4", title:"title3", imagePath:"http://pds12.egloos.com/pds/200904/20/99/kmenu2.png"}
+          ]);
+          
+   private function initApp():void
+   {
+   	
+   	
+   	
+    var adGrid:AdvancedDataGrid = new AdvancedDataGrid();
+    var adGridColGroup:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+    
+    var col1:AdvancedDataGridColumn = new AdvancedDataGridColumn("col1");
+    col1.dataField = "no";
+    col1.headerText = "NO";
+    
+    var col2:AdvancedDataGridColumn = new AdvancedDataGridColumn("col2");
+    col2.dataField = "title";
+    col2.headerText = "Title";
+    
+    var col3:AdvancedDataGridColumn = new AdvancedDataGridColumn("col3");
+    col3.dataField = "imagePath";
+    col3.headerText = "ImagePath";
+    
+    var render:ClassFactory = new ClassFactory(itemRenderer.DataGridRenderer);
+    render.properties = {valueData:"merong~~~~"};
+    
+    col3.itemRenderer = render;
+    
+    //adGridColGroup.children = [col1, col2, col3];
+    
+    //adGrid.groupedColumns = [adGridColGroup];
+    
+    adGrid.columns = new Array(col1, col2);
+    
+    adGrid.dataProvider = dataArr;
+    adGrid.percentWidth = 90;
+    adGrid.percentHeight = 100;
+    adGrid.variableRowHeight = true;
+    
+    this.addChild(adGrid);
+   }       
+          
+  ]]>
+ </mx:Script>
+ 
+</mx:Application>

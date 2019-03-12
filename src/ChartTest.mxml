@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientColors="[#f7f794, adb2ce]">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection ;
+			import mx.utils.ArrayUtil ;
+		]]>
+	</mx:Script>
+	<mx:Model id="myXML" source="data.xml" />
+	
+	<mx:ArrayCollection id="myAC" source="{ArrayUtil.toArray(myXML.result)}" />
+	<mx:Panel title="Line Chart">
+		<mx:LineChart dataProvider="{myAC}" showDataTips="true">
+			<mx:horizontalAxis>
+				<mx:CategoryAxis dataProvider="{myAC}" categoryField="month" />
+			</mx:horizontalAxis>
+			<mx:series>
+				<mx:LineSeries yField="apple" displayName="Apple" />
+				<mx:LineSeries yField="orange" displayName="Orange" />
+				<mx:LineSeries yField="banana" displayName="Banana" />
+			</mx:series>
+		</mx:LineChart>
+	</mx:Panel>
+</mx:Application>

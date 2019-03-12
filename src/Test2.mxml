@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="onCreationComplete()"
+		xmlns:custom="mycomp.*">
+<mx:Script>
+	<![CDATA[
+		import mx.collections.ArrayCollection;
+	 
+		[Bindable]
+		public var ResultAC:ArrayCollection = new ArrayCollection();
+	
+	    [Bindable]
+	    public var arrColumn:Array = 	[
+	    					{headerText : "00", dataField : "T00", multiHeader : ""},
+	    					{headerText : "01", dataField : "T01", multiHeader : "111"},
+	    					{headerText : "02", dataField : "T02", multiHeader : "111"},
+	    					{headerText : "03", dataField : "T03", multiHeader : "111"}];
+
+		private function onCreationComplete():void
+		{
+			ResultAC.addItem({T00 : "하하하하1", T01 : 112414, T02 : "C", T03 : "글쎄8"});
+			ResultAC.addItem({T00 : "하하하하1", T01 : 1122354, T02 : "A", T03 : "글쎄4"});
+			ResultAC.addItem({T00 : "하하하하2", T01 : 35645, T02 : "D", T03 : "글쎄2"});
+			ResultAC.addItem({T00 : "하하하하3", T01 : 5766, T02 : "J", T03 : "글쎄1"});
+			ResultAC.addItem({T00 : "하하하하3", T01 : 5632, T02 : "B", T03 : "글쎄4"});
+			
+		}
+	]]>
+</mx:Script>
+	<mx:Panel x="0" y="0" width="100%" height="100%">
+		<custom:MHGrid id="grid1" width="100%" height="100%" ArrColumn="{arrColumn}" dataProvider="{ResultAC}" enableMerge="true"/>
+		<mx:DataGrid id="grid2" width="100%" height="100%" dataProvider="{ResultAC}">
+            <mx:columns>
+                <mx:DataGridColumn dataField="T00" headerText="00"/>
+                <mx:DataGridColumn dataField="T01" headerText="01"/>
+                <mx:DataGridColumn dataField="T02" headerText="02"/>
+                <mx:DataGridColumn dataField="T03" headerText="03"/>
+            </mx:columns>
+        </mx:DataGrid>
+	</mx:Panel>	
+</mx:Application>
+

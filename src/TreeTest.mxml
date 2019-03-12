@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	fontSize="11" backgroundGradientColors="[#f7f794,  #adb2ce]">
+	<mx:Script>
+		<![CDATA[
+			private function connectData():void{
+				myComp.dataProvider = myData;
+			}
+			
+			private function addData():void{
+				myData.addItem(new XML("<item label='"+txtLabel.text+"' data='"+txtLabel.text+"' />"));
+			}
+			
+			private var openFlag:Boolean = true ; // node를 열고 닫는 플래그
+			
+			private function controlNode():void{
+				myComp.expandItem(myData.getItemAt(0), openFlag) ;
+				
+				myComp.expandItem(myData.getItemAt(0).item[0], openFlag) ;
+				openFlag = !openFlag
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:XMLListCollection id="myData">
+		<mx:XMLList>
+			<item label="메뉴" data="m">
+				<item label="한식" data="k">
+					<item label="비빔밥" data="k1" />
+					<item label="불고기" data="k2" />
+					<item label="냉면" data="k3" />
+				</item>
+				<item label="중식" data="c">
+					<item label="짜장면" data="c1" />
+					<item label="짬뽕" data="c2" />
+					<item label="탕수육" data="c3" />
+				</item>
+			</item>
+		</mx:XMLList>
+	</mx:XMLListCollection>
+	<mx:Panel title="Tree" width="690" height="426" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10"
+		horizontalAlign="left" fontSize="12" layout="absolute">
+		
+		<mx:Form x="221" y="10" width="349" height="156">
+			<mx:FormHeading label="5. 선택한 아이템 정보" width="301" labelWidth="1"  />
+			<mx:FormItem label="선택한 아이템의 인덱스">
+				<mx:TextInput id="txtIdx" text="{myComp.selectedIndex}" />
+			</mx:FormItem>
+			<mx:FormItem label="선택한 아이템의 Label">
+				<mx:TextInput id="txtLabel" text="{myComp.selectedItem.@label}" />
+			</mx:FormItem>
+			<mx:FormItem label="선택한 아이템의 Data">
+				<mx:TextInput id="txtData" text="{myComp.selectedItem.@data}" />	
+			</mx:FormItem>
+		</mx:Form>
+		<mx:Tree x="10" y="10" id="myComp" labelField="@label" showRoot="true" width="193" height="326"/>
+		
+		<mx:ControlBar>
+			<mx:Button label="1. XML Data 연결" click="connectData()" />
+			<mx:Button label="2. Tree 열고 닫기" click="controlNode()"  width="132"/>
+			<mx:Button label="3. 아이템 추가" click="addData()"  width="118"/>
+			<mx:Button label="4. Tree 노드 이동" fontWeight="bold"  width="134"/>
+			<mx:NumericStepper id="ns" minimum="0" change="myComp.selectedIndex=ns.value"  width="87"/>
+		</mx:ControlBar>
+	</mx:Panel>
+</mx:Application>

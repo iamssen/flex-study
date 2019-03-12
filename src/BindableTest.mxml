@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			private var bindableVar:Number = 0 ;
+		]]>
+	</mx:Script>
+	<mx:Label id="lb1" text="TextInput의 값 : {ti1.text}" />
+	<mx:TextInput id="ti1" text="{bindableVar}" />
+	<mx:Button label="BindableVar 값 증가" click="bindableVar++" />
+</mx:Application>

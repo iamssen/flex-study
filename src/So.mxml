@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+ creationComplete="onInit();">
+ <mx:Script>
+  <![CDATA[
+   
+   		private var lsosW:LSOs;						//ID로컬 저장 설정용
+   		
+  		[Bindable]		
+		private var savedUID:String;				//저장된 로그인 ID
+		
+  		private function onInit():void
+		{								
+							
+			//-------------------------------------------------------------------
+			var tempLsos:SharedObject = SharedObject.getLocal("login","/");
+			//로그인 설정값이 있으면 셋팅해줌
+			if(tempLsos)
+			{		
+				chkFlag.selected = tempLsos.data.idSaveFlag;
+				savedUID = tempLsos.data.UID; 
+			}				
+			//-------------------------------------------------------------------	
+		}
+		 //ID 정보를 로컬에 저장한다.
+		 private function onChkChanged(event:Event):void
+		 {
+		 	if(lsosW == null)
+		 	{
+		 		lsosW = new LSOs();
+		 		
+		 		var tempLsos:SharedObject = SharedObject.getLocal("login","/");
+		 		tempLsos.data.idSaveFlag = chkFlag.selected;
+		 		
+		 		if(chkFlag.selected)			 		
+		 			tempLsos.data.UID = txtID.text;
+		 		else
+		 			tempLsos.data.UID = "";
+		 					 		
+				lsosW.lsosWrite(tempLsos,true);
+		 	}
+		 }
+  ]]>
+ </mx:Script>
+ 
+ 	<mx:Style>
+		.back
+		{
+			backgroundImage: url(../img/login/LoginBack.png);
+		}
+		
+		.checkIdSave
+		{
+			fontSize: 11;
+			color: #6A6A6A;
+			textRollOverColor: #6A6A6A;
+			textSelectedColor: #6A6A6A;
+			disabledColor: #C6C6C6;
+			letterSpacing: -1;
+			borderColor: #99C7DE;
+		}
+		
+		.textInputLogin
+		{
+			fontSize: 11;
+			fontFamily: "Tahoma";
+			paddingLeft: 3;
+		}
+	</mx:Style>
+	
+ <mx:Canvas horizontalCenter="0" verticalCenter="0" width="840" height="556" styleName="back">
+	<mx:Canvas width="194" height="88" horizontalCenter="255" verticalCenter="-134">
+		<mx:VBox verticalCenter="-10" horizontalCenter="-24">			
+			<mx:TextInput id="txtID" x="10" y="10" imeMode="{IMEConversionMode.ALPHANUMERIC_HALF}" text="{savedUID}" width="132" height="20" styleName="textInputLogin"/>
+			<mx:TextInput id="txtPWD" x="10" y="40" displayAsPassword="true" height="20" width="132" styleName="textInputLogin"/>
+		</mx:VBox>
+		<mx:Button verticalCenter="-10" right="0" height="46" width="46" styleName="btnLogin"/>
+		
+		<mx:CheckBox id="chkFlag" change="onChkChanged(event)" bottom="8" left="7" styleName="checkIdSave"/>
+	</mx:Canvas>
+</mx:Canvas>
+</mx:Application>

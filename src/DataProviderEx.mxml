@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	<mx:ArrayCollection id="myAC">
+		<mx:Object label="사과" data="apple" />
+		<mx:Object label="포도" data="grape" />
+		<mx:Object label="멜론" data="melon" />
+		<mx:Object label="체리" data="cherry" />
+	</mx:ArrayCollection>
+	<mx:Panel title="ComboBox / DataGrid / List /TileList / HorizontalList" width="600" height="426"
+		paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" horizontalAlign="left" layout="absolute" fontSize="12">
+		 <mx:Label x="10" y="10" text="ComboBox" />
+		 <mx:Label x="134" y="10" text="DataGrid" />
+		 
+		 <mx:ComboBox id="cb" x="10" y="39" dataProvider="{myAC}" prompt="ComboBox" change="dg.selectedIndex=lst.selectedIndex=tlst1.selectedIndex=tlst2.selectedIndex=cb.selectedIndex"/>
+		 <mx:DataGrid id="dg" x="134" y="39" dataProvider="{myAC}" width="204" change="lst.selectedIndex=tlst1.selectedIndex=tlst2.selectedIndex=cb.selectedIndex=dg.selectedIndex">
+		 	<mx:columns>
+				<mx:DataGridColumn headerText="과일" dataField="label" />
+				<mx:DataGridColumn headerText="영문명" dataField="data" />
+		 	</mx:columns>
+		 </mx:DataGrid>
+		 
+		 <mx:List id="lst" x="10" y="96" dataProvider="{myAC}" change="tlst1.selectedIndex=tlst2.selectedIndex=cb.selectedIndex=dg.selectedIndex=lst.selectedIndex"/>
+		 
+		 <mx:TileList id="tlst1" x="357" y="40" dataProvider="{myAC}" height="141" change="tlst2.selectedIndex=cb.selectedIndex=dg.selectedIndex=lst.selectedIndex=tlst1.selectedIndex"/>
+		 
+		 <mx:Label x="10" y="70" text="List" />
+		 <mx:Label x="357" y="12" text="TileList" />
+		 
+		 <mx:HorizontalList id="tlst2" x="134" y="222" width="425" height="56" columnWidth="70" dataProvider="{myAC}"
+		 	change="tlst1.selectedIndex=cb.selectedIndex=dg.selectedIndex=lst.selectedIndex=tlst2.selectedIndex" />
+		 
+		 <mx:Label x="134" y="202" text="HorizontalList"/>
+		 
+		 <mx:Form x="10" y="296" width="250" height="100%">
+		 	<mx:FormItem label="과일명">
+				<mx:TextInput id="fkName" />
+		 	</mx:FormItem>
+		 	<mx:FormItem label="영문명">
+		 		<mx:TextInput id="feName" />
+		 	</mx:FormItem>
+		 </mx:Form>
+		 
+		 <mx:Button x="268" y="311" label="데이터추가" height="54" click="myAC.addItem({label:fkName.text, data:feName.text})" />
+		 <mx:Button x="367" y="311" label="데이터삭제" height="54" click="if(myAC.length>0) myAC.removeItemAt(myAC.length - 1)" />
+	</mx:Panel>
+</mx:Application>

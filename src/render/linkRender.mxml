@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Label xmlns:mx="http://www.adobe.com/2006/mxml" buttonMode="true" useHandCursor="true"  click="linkHandler()">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			public override function set data(value:Object):void{
+				super.data=value ;
+				if(data==null) return ;
+				if(data.hasOwnProperty("D"))
+				{					
+					this.htmlText = "<u><a link=''>" + data["D"] + "</a></u>";										
+				}
+			}
+			public function linkHandler():void{
+				if(data==null) return;
+				if(data["D"] == 0 ) return ;
+				
+				if(this.parentDocument.hasOwnProperty("goLink")){
+					this.parentDocument.goLink(data);
+				}
+			}
+		]]>
+	</mx:Script>
+</mx:Label>

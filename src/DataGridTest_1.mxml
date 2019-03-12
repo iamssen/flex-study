@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	width="100%" height="100%" initialize="onInit()">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.DataGrid;
+			import mx.controls.Alert;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var acValue : ArrayCollection ;
+			
+			public function onInit():void{
+				acValue = new ArrayCollection ;
+				for(var i : uint ; i < 50 ; i++){
+					acValue.addItem({no:(i+1), a:getRandom(), b:getRandom(), c:getRandom(), d:getRandom(), e:false}) ;
+				}
+			}
+			
+			public function getRandom():Number{
+				return Math.round(Math.random()*10000) ;
+			}
+			
+			public function goLink(data:Object):void{
+				Alert.show("");
+			}
+			
+			public function onCheckItem(data:Object):void{
+				
+				Alert.show(data.no);
+			}
+ 			[Bindable]
+			public var isCheckAll : Boolean = false;
+			public function checkAll(event:MouseEvent):void{
+				
+				 for(var i : uint = 0 ; i < acValue.length; i++){
+					if(isCheckAll){
+						acValue[i].e=false;
+					}else{
+						acValue[i].e=true;
+					}
+				}
+				
+				acValue.refresh() ;
+				
+				isCheckAll = !isCheckAll ; 
+			} 
+			
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%">
+		<mx:DataGrid width="100%" height="100%" alpha="0.7" dataProvider="{acValue}" horizontalScrollPolicy="auto" sortableColumns="false">
+			<mx:columns>
+				<mx:DataGridColumn headerText="No" dataField="no" width="50"/>
+				<mx:DataGridColumn headerText="A" dataField="a" width="100"/>
+				<mx:DataGridColumn headerText="B" dataField="b" width="100"/>
+				<mx:DataGridColumn headerText="C" dataField="c" width="100"/>
+				<mx:DataGridColumn headerText="D" dataField="d" width="100" itemRenderer="render.linkRender"/>
+				<mx:DataGridColumn headerText="" dataField="e" width="30" itemRenderer="render.chkRender">
+					<mx:headerRenderer>
+						<mx:Component>
+							<mx:Canvas>
+								<mx:CheckBox id="checkAll" selected="{parentDocument.isCheckAll}"  click="parentDocument.checkAllHandler(event)"/>
+								<!--<mx:Script>
+									<![CDATA[
+										import mx.controls.DataGrid;
+										import mx.controls.Alert;
+										[Bindable]
+										public var isCheckAll : Boolean = false;
+										private function checkAllHandler(event:MouseEvent):void{
+											Alert.show(DataGrid(owner).dataProvider[0].e);
+											 for(var i : uint = 0 ; i < DataGrid(owner).dataProvider.length; i++){
+												if(isCheckAll){
+													DataGrid(owner).dataProvider[i].e=true;
+												}else{
+													DataGrid(owner).dataProvider[i].e=false;
+												}
+											}
+											isCheckAll = !isCheckAll ; 
+										}
+									]]>
+								</mx:Script>-->
+							</mx:Canvas>
+						</mx:Component>
+					</mx:headerRenderer>
+				</mx:DataGridColumn>
+					
+			</mx:columns>
+		</mx:DataGrid>		
+	</mx:VBox>
+</mx:Application>

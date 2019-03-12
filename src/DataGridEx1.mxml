@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical">
+	<mx:ArrayCollection id="myAc">
+		<mx:source>
+			<mx:Object label="한국" data="1"/>
+			<mx:Object label="미국" data="2"/>
+			<mx:Object label="일본" data="3"/>
+			<mx:Object label="한국" data="4"/>
+			<mx:Object label="미국" data="5"/>
+			<mx:Object label="일본" data="6"/>
+			<mx:Object label="한국" data="7"/>
+			<mx:Object label="미국" data="8"/>
+			<mx:Object label="일본" data="9"/>
+		</mx:source>
+	</mx:ArrayCollection>
+	<mx:List dataProvider="{myAc}" width="282"/>
+	<mx:DataGrid dataProvider="{myAc}" editable="true" />
+</mx:Application>

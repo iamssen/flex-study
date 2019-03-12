@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+	<mx:Script>
+		<![CDATA[
+			
+			/*
+			var i:uint;
+			va r totalRows:uint = 16;
+			var dp:DataProvider = new DataProvider();
+			for (i = 0; i < totalRows; i++) {
+			    dp.addItem({col1:getRandomNumber(), col2:getRandomNumber(), col3:getRandomNumber(), col4:getRandomNumber()});
+			}
+			
+			var dg:DataGrid = new DataGrid();
+			dg.setSize(200, 300);
+			dg.columns = ["col1", "col2", "col3"];
+			dg.dataProvider = dp;
+			addChild(dg);
+			
+			function getRandomNumber():uint {
+			    return Math.round(Math.random() * 100);
+			}; */
+			
+		]]>
+	</mx:Script>
+
+    <mx:Array id="planets">
+        <mx:Object planet="Mercury" kind="Terrestrial"
+            year_duration="0.24" moons="0" cost="1250" />
+        <mx:Object planet="Venus" kind="Terrestrial"
+            year_duration="0.62" moons="0" cost="2400" />
+        <mx:Object planet="Jupiter" kind="Gas giant"
+            year_duration="11.86" moons="63" cost="500" />
+        <mx:Object planet="Neptune" kind="Gas giant"
+            year_duration="164.8" moons="13" cost="3000" />
+        <mx:Object planet="Ceres" kind="Ice dwarf"
+            year_duration="4.60" moons="0" cost="4000" />
+        <mx:Object planet="Pluto" kind="Ice dwarf"
+            year_duration="248.09" moons="3" cost="4500" />
+        <mx:Object planet="Eris" kind="Ice dwarf"
+            year_duration="557" moons="1" cost="3000" />
+    </mx:Array>
+
+    <mx:AdvancedDataGrid
+            id="adg"
+            dataProvider="{planets}"
+            width="450"
+            variableRowHeight="true"
+            wordWrap="true">
+
+        <mx:groupedColumns>
+
+            <mx:AdvancedDataGridColumn dataField="planet"
+                                       headerText="Planet" />
+
+                <mx:AdvancedDataGridColumnGroup id="details"
+                    headerText="Details"
+                    textAlign="center">
+                <mx:AdvancedDataGridColumn dataField="kind"
+                                           headerText="Kind" />
+                <mx:AdvancedDataGridColumn dataField="year_duration"
+                                           headerText="Year" />
+                <mx:AdvancedDataGridColumn dataField="moons"
+                                           headerText="Moons" />
+            </mx:AdvancedDataGridColumnGroup>
+
+            <mx:AdvancedDataGridColumn dataField="cost"
+                                       headerText="Cost" />
+
+        </mx:groupedColumns>
+
+    </mx:AdvancedDataGrid>
+
+</mx:Application>

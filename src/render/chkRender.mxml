@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:CheckBox xmlns:mx="http://www.adobe.com/2006/mxml" height="100%" change="changedCheckBox()" >
+	<mx:Script>
+		<![CDATA[
+			public override function set data(value:Object):void{
+				super.data = value; 
+				this.selected=false;
+				
+				if(data==null) return ; 
+				if(data.checked == null ) 
+					data.checked=false;
+					
+				if(data.hasOwnProperty("CHECK")){
+					data.checked=data.CHECK == "T"?true:false;
+				}
+				
+				if(data.checked){
+					this.selected = true;
+				}else{
+					this.selected = false;
+				}
+			}
+			
+			public function changedCheckBox():void{
+				if(data == null)
+					return;					
+				
+				data.checked = this.selected;
+				
+				if (data.hasOwnProperty("CHECK"))				
+					data.CHECK = data.checked == true? "T" : "F";
+				
+				if(parentDocument.hasOwnProperty("onCheckItem"))
+				{
+					parentDocument.onCheckItem(data);
+				}			
+			}
+		]]>
+	</mx:Script>
+</mx:CheckBox>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" backgroundGradientColors="[#f7f794, adb2ce]">
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			private var nick:Array=[
+				{date: "22-Aug-05", close: 45.87},
+				{date: "23-Aug-05", close: 45.74},
+				{date: "24-Aug-05", close: 45.77},
+				{date: "25-Aug-05", close: 46.06}
+			];
+			
+			[Bindable]
+			private var fred:Array=[
+				{date: "22-Aug-05", close: 45.59},
+				{date: "23-Aug-05", close: 45.3},
+				{date: "24-Aug-05", close: 46.71},
+				{date: "25-Aug-05", close: 46.88}
+			];
+		]]>
+	</mx:Script>
+	<mx:Panel title="Multiple Data Series" width="400" height="400">
+		<mx:ColumnChart id="mychart" dataProvider="{nick}" showDataTips="true" height="250" width="350">
+			<mx:horizontalAxis>
+				<mx:CategoryAxis dataProvider="{nick}" categoryField="date" />
+			</mx:horizontalAxis>
+			<mx:verticalAxis>
+				<mx:LinearAxis minimum="40" maximum="50" />
+			</mx:verticalAxis>
+			<mx:series>
+				<mx:ColumnSeries dataProvider="{nick}" xField="date" yField="close" displayName="aap1" />
+				<mx:ColumnSeries dataProvider="{fred}" xField="date" yField="close" displayName="ndx" />
+			</mx:series>
+		</mx:ColumnChart>		
+	</mx:Panel>
+</mx:Application>

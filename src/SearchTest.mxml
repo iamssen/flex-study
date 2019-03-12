@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+ creationComplete="startApp()">
+ <mx:Script>
+  <![CDATA[
+   import mx.collections.ArrayCollection;
+  
+   [Bindable] private var flatData:ArrayCollection = new ArrayCollection([
+    {company:"Microsoft", product:"MS오피스", Price:40000, Actual:38865},
+    {company:"Microsoft", product:"윈도우 XP", Price:30000, Actual:29885},
+    {company:"Microsoft", product:"인터넷 익스플로러", Price:30000, Actual:29134},
+    {company:"Adobe Systems", product:"Flex빌더3", Price:40000, Actual:38805},
+    {company:"Adobe Systems", product:"포토샵", Price:40000, Actual:55498},
+    {company:"Google", product:"맵 서비스", Price:45000, Actual:44913},
+    {company:"Google", product:"매일 서비스", Price:45000, Actual:44985},
+    {company:"Google", product:"검색서비스", Price:45000, Actual:44985},
+    {company:"Microsoft", product:"윈도우 Vista", Price:45000, Actual:52888}
+    ]);
+  
+   //  ArrayCollection 객체에 필터를 적용한다.
+   private function startApp() :void{
+    flatData.filterFunction = filterFunc;
+   }
+   
+   // 입력한 문자열에 대한 패턴매치를 통해 필터링 한다.
+   private function filterFunc(item:Object) : Boolean {
+    var pattern:String = '.*' + search.text + '.*';
+    
+    if( item.hasOwnProperty('product')){
+     if(item.company.match(pattern)){
+      return true; 
+     }else{
+      return false
+     }
+    }
+    return true;
+   }
+   
+   // 문자열이 입력되면 데이터를 갱신한다.
+   private function updateFilter() : void{
+    groupedData.refresh();
+   }
+  ]]>
+ </mx:Script>
+ <mx:Style>
+  global{
+   fontSize : 12;
+  }
+ </mx:Style>
+ <mx:CurrencyFormatter currencySymbol="\" id="curFormat" />
+ <mx:HBox>
+  <mx:Label text="개발사 검색" />
+  <mx:TextInput id="search" text="" change="updateFilter()" />
+ </mx:HBox>
+ <mx:AdvancedDataGrid id="adg" width="100%" height="100%"
+  initialize="groupedData.refresh()" displayItemsExpanded="true">
+  <mx:dataProvider>
+   <mx:GroupingCollection id="groupedData" source="{flatData}" >
+    <mx:Grouping>
+     <mx:GroupingField name="company">
+      <mx:summaries>
+       <mx:SummaryRow summaryPlacement="group">
+        <mx:fields>
+         <mx:SummaryField dataField="Price" operation="SUM" label="Budget" />
+         <mx:SummaryField dataField="Actual" operation="SUM"/>
+        </mx:fields>
+       </mx:SummaryRow>
+      </mx:summaries>
+     </mx:GroupingField>
+    </mx:Grouping>
+   </mx:GroupingCollection>
+  </mx:dataProvider>
+  <mx:columns>
+   <mx:AdvancedDataGridColumn headerText="개발사" dataField="product" />
+   <mx:AdvancedDataGridColumn headerText="예상 구매가격" dataField="Budget" formatter="{curFormat}" />
+   <mx:AdvancedDataGridColumn headerText="실제 구매가격" dataField="Actual" formatter="{curFormat}" />
+  </mx:columns>
+ </mx:AdvancedDataGrid>
+</mx:Application>

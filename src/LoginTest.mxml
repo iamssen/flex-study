@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Panel width="100%" height="100%" layout="absolute" title="회원가입" verticalAlign="middle" fontFamily="Verdana" fontSize="30" fontWeight="bold">
+		<mx:Form left="10" top="10" bottom="10" right="10" fontSize="11">
+			<mx:FormItem label="이름" horizontalAlign="left" required="true">
+				<mx:TextInput imeMode="KOREAN"/>
+			</mx:FormItem>
+			<mx:FormItem label="성별" direction="horizontal" width="215">
+					<mx:RadioButton label="남자" />
+					<mx:RadioButton label="여자" />
+			</mx:FormItem>
+			<mx:FormItem label="거주지">
+				<mx:ComboBox></mx:ComboBox>
+			</mx:FormItem>
+			<mx:FormItem label="인사말">
+				<mx:TextArea width="354" height="109"/>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar height="51" y="689" horizontalAlign="center" verticalAlign="middle">
+			<mx:Button label="확인" fontSize="11"/>
+		</mx:ControlBar>
+	</mx:Panel>
+	
+</mx:Application>

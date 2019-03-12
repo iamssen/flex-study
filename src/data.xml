@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<data>
+	<result month="1">
+		<apple>20</apple>
+		<orange>15</orange>
+		<banana>11</banana>
+	</result>
+	<result month="2">
+		<apple>15</apple>
+		<orange>18</orange>
+		<banana>13</banana>
+	</result>
+	<result month="3">
+		<apple>35</apple>
+		<orange>32</orange>
+		<banana>29</banana>
+	</result>
+	<result month="4">
+		<apple>29</apple>
+		<orange>24</orange>
+		<banana>32</banana>
+	</result>
+	<result month="5">
+		<apple>28</apple>
+		<orange>28</orange>
+		<banana>28</banana>
+	</result>
+	<result month="6">
+		<apple>26</apple>
+		<orange>27</orange>
+		<banana>30</banana>
+	</result>
+	<result month="7">
+		<apple>23</apple>
+		<orange>29</orange>
+		<banana>20</banana>
+	</result>
+	<result month="8">
+		<apple>17</apple>
+		<orange>21</orange>
+		<banana>23</banana>
+	</result>
+	<result month="9">
+		<apple>19</apple>
+		<orange>17</orange>
+		<banana>21</banana>
+	</result>
+	<result month="10">
+		<apple>21</apple>
+		<orange>18</orange>
+		<banana>22</banana>
+	</result>
+	<result month="11">
+		<apple>16</apple>
+		<orange>16</orange>
+		<banana>19</banana>
+	</result>
+	<result month="12">
+		<apple>18</apple>
+		<orange>13</orange>
+		<banana>17</banana>
+	</result>
+</data>
